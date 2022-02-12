@@ -28,11 +28,11 @@ app.post('/wizards-never-die/schedule', function (req, res) {
             for( j in data.lscd[i].mscd.g) {
                 // Find all games where to wizards are the home team
                 if(data.lscd[i].mscd.g[j].h.tn == 'Wizards') {
-                    var gameTime = new Date(data.lscd[i].mscd.g[j].gdtutc);
+                    var gameTime = new Date(data.lscd[i].mscd.g[j].gdte);
                     if(gameTime >= today) {
                         var gameData = {
-                            "date" : data.lscd[i].mscd.g[j].gdtutc,
-                            "dayOfTheWeek" : data.lscd[i].mscd.g[j].gdtutc,
+                            "date" : data.lscd[i].mscd.g[j].gdte,
+                            "dayOfTheWeek" : getDayOfTheWeek(gameTime),
                             "opponent" : data.lscd[i].mscd.g[j].v.tn
                         };
                         games.push(gameData);
@@ -50,8 +50,25 @@ app.listen(port, () => {
   console.log(`Slack Bot listening on port ${port}`);
 });
 
-// Calculate the day of the week from a UTC date string
-function calculateDayOfTheWeek(date) {
-    // ToDo
-    return "";
+// Return the day of the week from a date object
+function getDayOfTheWeek(date) {
+    var k = date.getUTCDay();
+    var weekDay;
+    switch(k) {
+        case 0:
+            return "Sunday";
+        case 1:
+            return "Monday";
+        case 2:
+            return "Tuesday";
+        case 3:
+            return "Wednesday";
+        case 4:
+            return "Thursday";
+        case 5:
+            return "Friday";
+        case 6:
+            return "Saturday";
+    };
+    return weekDay;
 };
