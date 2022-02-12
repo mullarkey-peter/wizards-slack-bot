@@ -31,7 +31,8 @@ app.post('/wizards-never-die/schedule', function (req, res) {
                     var gameTime = new Date(data.lscd[i].mscd.g[j].gdtutc);
                     if(gameTime >= today) {
                         var gameData = {
-                            "time" : data.lscd[i].mscd.g[j].gdtutc,
+                            "date" : data.lscd[i].mscd.g[j].gdtutc,
+                            "dayOfTheWeek" : data.lscd[i].mscd.g[j].gdtutc,
                             "opponent" : data.lscd[i].mscd.g[j].v.tn
                         };
                         games.push(gameData);
@@ -48,3 +49,9 @@ app.post('/wizards-never-die/schedule', function (req, res) {
 app.listen(port, () => {
   console.log(`Slack Bot listening on port ${port}`);
 });
+
+// Calculate the day of the week from a UTC date string
+function calculateDayOfTheWeek(date) {
+    // ToDo
+    return "";
+};
