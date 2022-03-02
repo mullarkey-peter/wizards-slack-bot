@@ -4,7 +4,9 @@
   "description": "Slack Bot To Display Washinton Wizards Home Games",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index.js",
+    "start": "node index.js"
   },
   "author": "Peter Sterling",
   "license": "MIT",
@@ -12,6 +14,7 @@
     "body-parser": "^1.19.1",
     "cross-fetch": "^3.1.5",
     "express": "^4.17.2",
+    "luxon": "^2.3.1",
     "node-fetch": "^3.2.0"
   }
 }
